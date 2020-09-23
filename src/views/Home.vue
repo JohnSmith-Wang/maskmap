@@ -1,14 +1,13 @@
 <template>
-
-  <main class="container-fluid">
-    <div class="col-12 col-xl-6">
+  <div id="main" class="container-fluid">
+    <div class="col-12 col-xl-6 content">
       <h4>★ 練習項目</h4>
       <ul>
         <li>leaflet 應用</li>
         <li>axios(AJAX) 應用</li>
       </ul>
     </div>
-    <div class="col-12 col-xl-6">
+    <div class="col-12 col-xl-6 content">
       <h4>★ 功能簡述</h4>
       <ul>
         <li>選擇縣市後，再選擇行政區，下表便會顯示店家資料</li>
@@ -17,27 +16,27 @@
         <li>該網站支援RWD功能，一旦進入RWD模式，可以透過箭頭顯示或隱藏店家列表</li>
       </ul>
     </div>
-    <div class="col-12 col-xl-6">
+    <div class="col-12 col-xl-6 content">
       <h4>★ 更新履歷</h4>
       <ul>
         <li>9/30 初次上傳到github</li>
       </ul>
     </div>
-  </main>
+  </div>
 
 </template>
 
 <style lang="scss" scoped>
-main div{
-  margin: 30px auto;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
+#main{
+  height: 100%;
+  padding: 10px;
+  background-color: pink;
+  .content{
+    background-color: white;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+  }
 }
-
-main div li{
-  margin: 10px auto;
-}
-
 </style>
 
