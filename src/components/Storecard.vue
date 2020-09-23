@@ -44,34 +44,34 @@
 
 <script>
 export default {
-    data(){
-      return{
-        TargetStore:"",
-      }
-    },
-    props:{
-      StoreIndex:{
-          type:Array,
-          required:true
-      }
-    },
-    methods:{
-      maskColor(val){
-        if(val === 0){
-          return 'list-group-item-danger';
-        }
-        else if(val <= 100){
-          return 'list-group-item-warning';
-        }
-        else{
-          return 'list-group-item-info';
-        }             
-      },
-      selStoreHandler(val){
-        this.TargetStore = val.properties.name;
-        this.$emit('selStore',val)
-      }
+  data(){
+    return{
+      TargetStore:"",
     }
+  },
+  props:{
+    StoreIndex:{
+      type:Array,
+      required:true
+    }
+  },
+  methods:{
+    maskColor(val){
+      if(val === 0){
+        return 'list-group-item-danger';
+      }
+      else if(val <= 100){
+        return 'list-group-item-warning';
+      }
+      else{
+        return 'list-group-item-info';
+      }             
+    },
+    selStoreHandler(val){
+      this.TargetStore = val.properties.name;
+      this.$emit('selStore',val)
+    }
+  }
 }
 </script>
 

@@ -6,7 +6,7 @@
         <Sidebar :Alldata = "Alldata" @SearchResult="ResultHandler" @selStore="EmitToMap"/>
       </div>
       
-       <div id="hideBtn" class="col-1" @click="changeHide">
+       <div id="btnArea" class="col-1" @click="changeHide">
          <i class="fas fa-chevron-right" :class="{'iconDisplay':!isHide,'iconHide':isHide}"></i>
        </div>
 
@@ -23,80 +23,81 @@ import Sidebar from '@/components/Sidebar';
 import Map from '@/components/Map';
 
 export default {
-    data(){
-        return{
-          Alldata:[],
-          ResultData:[],
-          Search:{},
-          isHide:true
-        }
-    },
-    components:{
-        Sidebar,
-        Map
-    },
-    methods:{
-        getdata(){
-            const api = `https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json`;
-            const vm = this;
-            vm.$http.get(api).then((response) => {
-                response.data.features.forEach(function(item){
-                  vm.Alldata.push(item)
-                });
-            })
-        },
-        ResultHandler(val){
-          this.ResultData = val
-        },
-        EmitToMap(val){
-          this.isHide = true;
-          this.Search = val;
-        },
-        changeHide(){
-          this.isHide = !this.isHide;
-        }
-    },
-    mounted(){
-      this.getdata();
+  data(){
+    return{
+      Alldata:[],
+      ResultData:[],
+      Search:{},
+      isHide:true
     }
+  },
+  components:{
+    Sidebar,
+    Map
+  },
+  methods:{
+    getdata(){
+      const api = `https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json`;
+      const vm = this;
+      vm.$http.get(api).then((response) => {
+        response.data.features.forEach(function(item){
+          vm.Alldata.push(item)
+        });
+      })
+    },
+    ResultHandler(val){
+      this.ResultData = val
+    },
+    EmitToMap(val){
+      this.isHide = true;
+      this.Search = val;
+    },
+    changeHide(){
+      this.isHide = !this.isHide;
+    }
+  },
+  mounted(){
+    this.getdata();
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 #sidebarArea{
-  margin: 0px;
+  margin: 0px auto;
   padding: 10px;
-  height: 100vh;
+  height: calc(100vh - 56px);
   overflow:auto;
 }
 
 #mapArea{
   margin: 0px;
   padding: 0px;
+  height: calc(100vh - 56px);
 }
 
-#hideBtn{
+#btnArea{
   display: none;
   padding: 0px;
   font-size: 30px;
   color: white;
   background-color: rgb(153, 149, 149);
   text-align: center;
-  height: 100vh;
   i{
     margin: 10px auto;
+    cursor: pointer;
   }
 }
 
 @media only screen and (max-width:1200px){
-  #hideBtn{
+  #btnArea{
     display: block;
   }
   .contentHide{
     display: none;
   }
   .contentDisplay{
-    display:block;
+    display: block;
   }
   .iconDisplay{
     transform: rotate(180deg);

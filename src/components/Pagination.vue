@@ -1,16 +1,15 @@
 <template>
-  <div class="paginationArea col-11 col-sm-6 col-md-6 col-xl-6">
+  <div class="paginationArea col-8 col-sm-5 col-md-4 col-lg-3 col-xl-7">
 
     <div class="totalpageArea">
       {{nowPage}} of {{totalPage}}
     </div>
 
-    <div class="pageArea" aria-label="Page navigation example">
+    <div class="pageArea">
       <ul class="pagination pagination-sm">
         <li class="page-item" :class="{'not-active': nowPage === 1}" @click.prevent="pageChangeEmit(nowPage-1)">
-          <a class="page-link" aria-label="Previous"  >
-            <span aria-hidden="true">&lt;</span>
-            <span class="sr-only">Previous</span>
+          <a class="page-link">
+            <span>&lt;</span>
           </a>
         </li>
 
@@ -19,9 +18,8 @@
         </select>
 
         <li class="page-item" :class="{'not-active': nowPage === totalPage}" @click.prevent="pageChangeEmit(nowPage+1)">
-          <a class="page-link" aria-label="Next" >
-            <span aria-hidden="true">&gt;</span>
-            <span class="sr-only">Next</span>
+          <a class="page-link">
+            <span>&gt;</span>
           </a>
         </li>
       </ul>

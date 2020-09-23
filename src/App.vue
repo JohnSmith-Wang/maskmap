@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    
+
     <div id="navbarArea">
       <Navbar/>
     </div>
     
-    <div id="viewArea">     
+    <div id="viewArea">
       <router-view/>
     </div>
 

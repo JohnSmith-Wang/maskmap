@@ -1,19 +1,15 @@
 <template>
-
-    <div class="sMenu">
-      <div class="selArea">
-        <Selector :TownList="TownIndex" @selCounty="selCountyHandler" @selTown="selTownHandler"></Selector>
-      </div>
-
-      <div class="pageArea col-12">
-        <Pagination v-if="IndexLength > 0" :dataLength="IndexLength" :nowPage="nowPage" @pageChange="pageChangeHandler"></Pagination>
-      </div>
-          
-      <div class="storeCardArea col-12">
-        <Storecard :StoreIndex="PageStoreIndex" @selStore="emitToHome"></Storecard>
-      </div>
+  <div class="row sMenu">
+    <div class="col-12 sArea">
+      <Selector :TownList="TownIndex" @selCounty="selCountyHandler" @selTown="selTownHandler"></Selector>
     </div>
-
+    <div class="col-12 sArea">
+      <Pagination v-if="IndexLength > 0" :dataLength="IndexLength" :nowPage="nowPage" @pageChange="pageChangeHandler"></Pagination>
+    </div>
+    <div class="col-12 sArea">
+      <Storecard :StoreIndex="PageStoreIndex" @selStore="emitToHome"></Storecard>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -22,26 +18,26 @@ import Storecard from '@/components/Storecard'
 import Pagination from '@/components/Pagination'
 
 export default {
-    name:'Sidebar',
-    data(){
-        return{
-          tempResult:[],
-          selCounty:'',
-          selTown:'',
-          nowPage:1
-        }
-    },
-    components:{
-      Selector,
-      Storecard,
-      Pagination
-    },
-    props:{
-      Alldata:{
-        type:Array,
-        required:true
-      }
-    },
+  name:'Sidebar',
+  data(){
+    return{
+      tempResult:[],
+      selCounty:'',
+      selTown:'',
+      nowPage:1
+    }
+  },
+  components:{
+    Selector,
+    Storecard,
+    Pagination
+  },
+  props:{
+    Alldata:{
+      type:Array,
+      required:true
+    }
+  },
   methods:{
     selCountyHandler(val){
       this.selCounty = val;
@@ -92,13 +88,11 @@ export default {
     StoreIndex(){
       let Result =[];
       let temp=[];
-
       if(this.selCounty){
         temp = this.Alldata.filter(item => {
             return item.properties.address.substr(0,3) === this.selCounty;
         })
       }
-
       if(this.selTown){
         Result = temp.filter(item => {
           if(this.selTown === '其他'){
@@ -127,7 +121,6 @@ export default {
     IndexLength(){
       let DataLength;
       DataLength = this.StoreIndex.length
-
       return DataLength;
     }
   },
@@ -141,13 +134,10 @@ export default {
 
 <style lang="scss" scoped>
 .sMenu{
-  .selArea{
-    margin: 10px auto;
-    padding: 10px;
-  }
-  .storeCardArea{
-    margin: 10px auto;
-    padding: 10px;
-  }
+  margin: 10px auto;
+  padding: 10px;
+}
+.sArea{
+  margin: 10px auto;
 }
 </style>
