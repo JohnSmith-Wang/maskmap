@@ -1,11 +1,11 @@
 <template>
-  <div class="paginationArea col-8 col-sm-5 col-md-4 col-lg-3 col-xl-7">
+  <div id="paginationArea" class="col-8 col-sm-5 col-md-4 col-lg-3 col-xl-7">
 
-    <div class="totalpageArea">
-      {{nowPage}} of {{totalPage}}
+    <div id="totalpageArea">
+      {{selPage}} of {{totalPage}}
     </div>
 
-    <div class="pageArea">
+    <div id="pageArea">
       <ul class="pagination pagination-sm">
         <li class="page-item" :class="{'not-active': nowPage === 1}" @click.prevent="pageChangeEmit(nowPage-1)">
           <a class="page-link">
@@ -56,8 +56,8 @@ export default {
   },
   computed:{
     totalPage(){
-      return Math.ceil(this.dataLength/4)
-    },
+      return Math.ceil(this.dataLength / 5)
+    }
   },
   watch:{
     nowPage(val){
@@ -68,29 +68,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.not-active {
-  pointer-events: none;
-  cursor: default;
-  text-decoration: none;
-  color: gray;
-}
-
-.page-item{
-  cursor: pointer;
-  user-select: none;
-}
-
-.paginationArea{
+#paginationArea{
   margin: 0px auto;
 }
 
-.pageArea{
-  margin: 0px auto;
-}
-
-.totalpageArea{
+#totalpageArea{
   margin: 0px auto;
   text-align: center;
 }
 
+#pageArea{
+  margin: 0px auto;
+  .page-item{
+    cursor: pointer;
+    user-select: none;
+  }
+  .not-active {
+    visibility:hidden;
+  }
+}
 </style>

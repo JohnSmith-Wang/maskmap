@@ -2,62 +2,72 @@
   <div class="container-fluid">
     <div class="row">
 
-      <div id="sidebarArea" class="col-xl-3 bg-light" :class="{'col-8':!isHide,'contentHide':isHide, 'contentDisplay':!isHide}">
-        <Sidebar :Alldata = "Alldata" @SearchResult="ResultHandler" @selStore="EmitToMap"/>
+      <div id="sidebarArea" class="col-xl-3 bg-light" :class="{'col-10':!isHide,'contentHide':isHide, 'contentDisplay':!isHide}">
+        <div class="sMenu">
+          <div class="col-12 sArea">
+            <Selector></Selector>
+          </div>
+          <div class="col-12 sArea">
+            <Storemenu :StoreIndex = StoreIndex></Storemenu>
+          </div>
+        </div>
       </div>
       
-       <div id="btnArea" class="col-1" @click="changeHide">
-         <i class="fas fa-chevron-right" :class="{'iconDisplay':!isHide,'iconHide':isHide}"></i>
-       </div>
+      <div id="btnArea" class="col-1" @click="changeHide">
+        <i class="fas fa-chevron-right" :class="{'iconDisplay':!isHide,'iconHide':isHide}"></i>
+      </div>
 
-       <div id="mapArea" class="col-xl-9" :class="{'col-3':!isHide, 'col-11':isHide}">
-         <Map :StoreIndex="ResultData" :selStore="Search"/>
-       </div>
-
+      <div id="mapArea" class="col-xl-9" :class="{'col-1':!isHide, 'col-11':isHide}">
+        <Map :StoreIndex="StoreIndex" :selStore="SearchResult"/>
+      </div>
+      
     </div>
   </div>
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar';
+import Selector from '@/components/Selector';
+import Storemenu from '@/components/Storemenu';
 import Map from '@/components/Map';
 
 export default {
   data(){
     return{
-      Alldata:[],
-      ResultData:[],
-      Search:{},
-      isHide:true
+      isHide: true
     }
   },
   components:{
-    Sidebar,
+    Selector,
+    Storemenu,
     Map
   },
   methods:{
-    getdata(){
-      const api = `https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json`;
-      const vm = this;
-      vm.$http.get(api).then((response) => {
-        response.data.features.forEach(function(item){
-          vm.Alldata.push(item)
-        });
-      })
-    },
-    ResultHandler(val){
-      this.ResultData = val
-    },
     EmitToMap(val){
       this.isHide = true;
       this.Search = val;
     },
     changeHide(){
       this.isHide = !this.isHide;
-    }
+    },
   },
   mounted(){
-    this.getdata();
+    this.$store.dispatch('getdata')
+  },
+  computed:{
+    Alldata(){
+      return this.$store.getters['INIT_Data']
+    },
+    StoreIndex(){
+      return this.$store.getters['Result_Menu']
+    },
+    SearchResult(){
+      return this.$store.getters['Search_Result']
+    }
+  },
+  watch:{
+    SearchResult(){
+      this.isHide = true
+    }
   }
 }
 </script>
@@ -68,6 +78,13 @@ export default {
   padding: 10px;
   height: calc(100vh - 56px);
   overflow:auto;
+  .sMenu{
+    margin: 10px auto;
+    padding: 10px;
+  }
+  .sArea{
+    margin: 10px auto;
+  }
 }
 
 #mapArea{
