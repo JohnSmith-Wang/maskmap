@@ -2,7 +2,7 @@
   <div class="storeMenu">
 
     <div class="card storeCard" 
-         :class="item.properties.name === TargetStore? 'bg-danger':'bg-success' " 
+         :class="item.properties.name === TargetStore? 'bg-danger':'bg-success'" 
          v-for="item in StoreIndex" 
          :key="item.properties.id" 
          @click.prevent="selStoreHandler(item)">
@@ -69,7 +69,7 @@ export default {
     },
     selStoreHandler(val){
       this.TargetStore = val.properties.name;
-      this.$emit('selStore',val)
+      this.$store.commit('search_Handler',val)
     }
   }
 }
@@ -84,8 +84,18 @@ export default {
   cursor: pointer;
   max-width: 20rem;
   margin: 10px auto;
+  opacity: .4;
   .storeName{
     font-size:20px
   }
+}
+
+.storeCard:hover{
+  opacity: 1;
+  transition: .5s;
+}
+
+.bg-danger{
+  opacity: 1;
 }
 </style>

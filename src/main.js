@@ -2,10 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
-import axios from 'axios' /*啟用axios */
-import VueAxios from 'vue-axios' /*啟用axios */
+import axios from 'axios'/*啟用axios */
+import VueAxios from 'vue-axios'/*啟用axios */
 
-import 'bootstrap' 
+import 'bootstrap'
 
 /*地圖相關*/
 import { LMap, LTileLayer, LMarker, LPopup, LIcon } from "vue2-leaflet";
@@ -30,16 +30,18 @@ Icon.Default.mergeOptions({
 import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+import store from './store'
 
 Vue.component('v-marker-cluster', Vue2LeafletMarkerCluster)
 
 
-Vue.use(VueAxios, axios) /*啟用axios */
+Vue.use(VueAxios, axios)/*啟用axios */
 
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
