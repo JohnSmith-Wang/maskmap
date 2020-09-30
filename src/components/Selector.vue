@@ -1,14 +1,14 @@
 <template>
 
     <div class="row justify-content-center">
-      <div class="col-12 col-sm-6 col-md-6 col-xl-6 selStyle">
+      <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 selStyle">
         <select class="form-control" v-model="selCounty" @change="selCountyHanlder">
           <option value="">請選擇縣市</option>
           <option v-for="(item,index) in CountyIndex" :key="index">{{item}}</option>
         </select>
       </div>
 
-      <div class="col-12 col-sm-6 col-md-6 col-xl-6 selStyle">
+      <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 selStyle">
         <select class="form-control" v-model="selTown" @change="selTownHanlder">
           <option value="">請選擇行政區</option>
           <option v-for="(item,index) in TownIndex" :key="index">{{item}}</option>

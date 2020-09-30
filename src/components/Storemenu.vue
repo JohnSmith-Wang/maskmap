@@ -1,6 +1,6 @@
 <template>
- <div>
-   <div class="col-12">
+  <div>
+    <div class="col-12">
       <Pagination v-if="StoreIndex.length > 0" :dataLength="StoreIndex.length" :nowPage="nowPage" @pageChange="pageChangeHandler"></Pagination>
     </div>
     <div class="col-12">

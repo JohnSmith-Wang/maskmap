@@ -84,7 +84,7 @@ export default {
   cursor: pointer;
   max-width: 20rem;
   margin: 10px auto;
-  opacity: .4;
+  opacity: .7;
   .storeName{
     font-size:20px
   }
@@ -92,7 +92,7 @@ export default {
 
 .storeCard:hover{
   opacity: 1;
-  transition: .5s;
+  transition: .3s;
 }
 
 .bg-danger{

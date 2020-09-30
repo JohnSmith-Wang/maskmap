@@ -26,8 +26,8 @@
             </ul>
             <div class="card-body text-center">
               <table>
-                <td width="500px"><span  id="maskCounter" class="btn btn-lg" :class="maskColor(item.properties.mask_adult)"><strong>成人 </strong><br>{{item.properties.mask_adult}}</span></td>
-                <td width="500px"><span  id="maskCounter" class="btn btn-lg" :class="maskColor(item.properties.mask_child)"><strong>小孩 </strong><br>{{item.properties.mask_child}}</span></td>
+                <td width="500px"><span  class="btn btn-lg maskCounter" :class="maskColor(item.properties.mask_adult)"><strong>成人 </strong><br>{{item.properties.mask_adult}}</span></td>
+                <td width="500px"><span  class="btn btn-lg maskCounter" :class="maskColor(item.properties.mask_child)"><strong>小孩 </strong><br>{{item.properties.mask_child}}</span></td>
               </table>
             </div>
           </div>
@@ -131,7 +131,7 @@ export default {
 
 <style lang="scss" scoped>
 
-#maskCounter{
+.maskCounter{
   padding: 0px 30px;
   pointer-events: none;
   cursor: default;
